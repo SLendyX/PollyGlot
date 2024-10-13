@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*, *::after, *::before{
+  box-sizing: border-box;
+}
+
+body, html{
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.app-container{
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+
+/* HEADER */
+.banner{
+  background-image: url("./assets/worldmap.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 213px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  margin-bottom: 1.875em;
+}
+
+.banner > img{
+  max-width: 95px;
+  max-height: 86px;
+}
+
+.banner--header{
+  font-family: "Big Shoulders Display", sans-serif;
+  font-size: 2.71rem;
+  color: #32CD32;
+  margin: 0;
+}
+
+.banner-subheader{
+  font-size: .75rem;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+  margin-top: 1em;
+  text-transform: capitalize;
+}
+
+
+/* BODY */
+
+form{
+  border: 4px solid #252f42;
+  border-radius: .93em;
+  width: 96%;
+  margin: 0 auto;
+  padding: 1.5em;
+  padding-top: 0;
+  font-size: 1.25rem;
+}
+
+.form--header{
+  color: #035A9D;
+  font-size: inherit;
+  font-weight: 700;
+  margin: 1.2em 0;
+  text-align: center;
+}
+
+.text-input{
+  width: 100%;
+  height: 120px;
+  background: #EFF0F4;
+  color: #333333;
+  font-size: inherit;
+  padding: .5em;
+  border-radius: 8px;
+  resize: vertical;
+}
+
+.text-input:disabled{
+  cursor: text;
+}
+
+.input-labels{
+  display: flex;
+  align-items: center;
+  gap: .6em;
+  padding: .25em 0;
+  user-select: none;
+}
+
+.flag-icon{
+  border: 1px solid #999999;
+}
+
+.translate-btn{
+  width: 100%;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: white;
+  background: #035A9D;
+  border-radius: 6px;
+  padding: .5em;
+  border: none;
+  cursor: pointer;
+  margin-top: 1.67em;
+  margin-bottom: 1em;
+}
+
+
+.error-text{
+  color: red;
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: center;
+  /* text-shadow: 0px 0px 1px black; */
+}
