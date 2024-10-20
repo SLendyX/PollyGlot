@@ -3,7 +3,6 @@ import frenchFlag from "../assets/fr-flag.png"
 import japaneseFlag from "../assets/jpn-flag.png"
 import spanishFlag from "../assets/sp-flag.png"
 import germanFlag from "../assets/gr-flag.png"
-import OpenAI from "openai";
 import Flag from "./Flag";
 import sendSvg from "../assets/send-btn.svg"
 import Message from "./Message";
@@ -12,11 +11,6 @@ const widthConstant = 372/33
 
 
 export default function(){
-    const openai = new OpenAI({
-        apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-        dangerouslyAllowBrowser: true
-    })
-
     const languages = [["german", germanFlag], ["french", frenchFlag], ["spanish", spanishFlag], ["japanese", japaneseFlag]]
 
     const [language, setLanguage] = React.useState({
@@ -86,6 +80,8 @@ export default function(){
         setError("")
 
         try{
+            const url = "https://openai-api-worker.slendyx2002.workers.dev/"
+
             setMessages(oldMessages => {
                 return [...oldMessages, {text: input, type:"user"}]
             })
@@ -105,19 +101,30 @@ export default function(){
 
             setInput("")
 
-            const response = await openai.chat.completions.create({
-                model: 'gpt-4o-mini',
-                messages: messages,
+            const response = await fetch(url, {
+                method: "POST",
+                headers:{
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(messages)
             })
 
+            const data = await response.json()
+
+            if(!response.ok){
+                throw new Error(`Worker Error: ${data.error}`)
+            }
+
+            console.log(data)
+
             setMessages(oldMessages => {
-                return [...oldMessages, {text: response.choices[0].message.content, type:"assistant"}]
+                return [...oldMessages, {text: data.content, type:"assistant"}]
             })
 
             // console.log(response)
         }catch(err){
             console.error(err)
-            setError("Something went wrong please refresh the browser")
+            setError(`${err.message} Please refresh browser`)
         }
     }
     
